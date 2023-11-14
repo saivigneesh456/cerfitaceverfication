@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate Verification</title>
+    <link rel="stylesheet" type="text/css" href="index.css"> <!-- Link to your CSS file -->
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script>
+</head>
+<body>
+
+    <header>
+        <div id="logo">
+            <img src="InfySkill.jpeg" alt="Company Logo">
+        </div>
+        <h1>Internship ​Certificate Verification</h1>
+    </header>
+
+    <div id="main-content">
+        <!-- Dummy file URL for demonstration purposes -->
+        <input type="hidden" id="fileUrlInput" value="DATA CERF.xlsx">
+
+        <label for="nameInput">Enter Name:</label>
+        <input type="text" id="nameInput">
+        <button onclick="getStudentDetails()">Get Details</button>
+
+        <div id="result"></div>
+    </div>
+
+    <script>
+        var studentData;
+    
+        // Load the file automatically on page load
+        document.addEventListener('DOMContentLoaded', function () {
+            loadFile();
+        });
+    
+        function loadFile() {
+            var fileUrl = document.getElementById("fileUrlInput").value;
+            var resultDiv = document.getElementById("result");
+    
+            fetch(fileUrl)
+                .then(response => response.arrayBuffer())
+                .then(data => {
+                    var workbook = XLSX.read(data, { type: 'array' });
+    
+                    // Assuming the first sheet is relevant
+                    var sheetName = workbook.SheetNames[0];
+                    var sheet = workbook.Sheets[sheetName];
+    
+                    // Convert sheet data to JSON
+                    studentData = XLSX.utils.sheet_to_json(sheet);
+    
+                    resultDiv.innerHTML = `<p>File loaded successfully</p>`;
+                })
+                .catch(error => {
+                    resultDiv.innerHTML = `<p>Error loading file: ${error}</p>`;
+                });
+        }
+    
+        function getStudentDetails() {
+            var nameInput = document.getElementById("nameInput").value;
+            var resultDiv = document.getElementById("result");
+    
+            if (studentData) {
+                var student = studentData.find(function (s) {
+                    return s.Name === nameInput;
+                });
+    
+                if (student) {
+                    resultDiv.innerHTML = `<p><strong>Name:</strong> ${student.Name}</p>
+                                           <p><strong>Internship Domain:</strong> ${student.Internshipname}</p>
+                                           <p><strong>Designation:</strong> ${student.Designation}</p>
+                                           <p><strong>Duration:</strong> ${student.Duration}</p>
+                                           <p><strong>Certification ID:</strong> ${student.CertificationID}</p>`;
+                } else {
+                    resultDiv.innerHTML = `<p>No DATA found for ${nameInput}</p>`;
+                }
+            } else {
+                resultDiv.innerHTML = `<p>Please load an Excel file first</p>`;
+            }
+        }
+    </script>
+
+</body>
+</html>
