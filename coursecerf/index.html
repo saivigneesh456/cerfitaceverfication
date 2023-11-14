@@ -20,7 +20,7 @@
 
     <div id="main-content">
         <!--  file name -->
-        <input type="hidden" id="fileUrlInput" value="data.xlsx">
+        <input type="hidden" id="fileUrlInput" value="Coursedata.xlsx">
 
         <label for="nameInput">Enter Name:</label>
         <input type="text" id="nameInput">
@@ -73,7 +73,8 @@
                     resultDiv.innerHTML = `<p><strong>Name:</strong> ${student.Name}</p>
                                            <p><strong>Course Domain:</strong> ${student.CourseDomain}</p>
                                            <p><strong>Designation:</strong> ${student.Designation}</p>
-                                           <p><strong>Duration:</strong> ${student.Duration}</p>`;
+                                           <p><strong>Duration:</strong> ${student.Duration}</p>
+                                           <p><strong>Certificate id:</strong> ${student.Certificateid}</p>`;
                 } else {
                     resultDiv.innerHTML = `<p>No DATA found for ${nameInput}</p>`;
                 }
