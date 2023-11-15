@@ -8,6 +8,7 @@
     <link rel="icon" href="Logo.png" type="png">
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/SheetJS/js-xlsx/v0.14.0/dist/xlsx.full.min.js"></script>
 </head>
 <body>
 
@@ -19,8 +20,8 @@
     </header>
 
     <div id="main-content">
-        <!--  file name -->
-        <input type="hidden" id="fileUrlInput" value="Coursedata.xlsx">
+        <!-- Google Sheets URL -->
+        <input type="hidden" id="sheetUrlInput" value="https://docs.google.com/spreadsheets/d/1ztpR3k2Z6VSvEqsdJoJxuHG_y_zCemEZ/export?format=xlsx">
 
         <label for="idInput">Enter Certificate ID:</label>
         <input type="text" id="idInput">
@@ -32,16 +33,16 @@
     <script>
         var certificateData;
     
-        // Load the file automatically on page load
+        // Load the Google Sheets document automatically on page load
         document.addEventListener('DOMContentLoaded', function () {
-            loadFile();
+            loadSheet();
         });
     
-        function loadFile() {
-            var fileUrl = document.getElementById("fileUrlInput").value;
+        function loadSheet() {
+            var sheetUrl = document.getElementById("sheetUrlInput").value;
             var resultDiv = document.getElementById("result");
     
-            fetch(fileUrl)
+            fetch(sheetUrl)
                 .then(response => response.arrayBuffer())
                 .then(data => {
                     var workbook = XLSX.read(data, { type: 'array' });
@@ -53,10 +54,10 @@
                     // Convert sheet data to JSON
                     certificateData = XLSX.utils.sheet_to_json(sheet);
     
-                    resultDiv.innerHTML = `<p>File loaded successfully</p>`;
+                    resultDiv.innerHTML = `<p> successfully</p>`;
                 })
                 .catch(error => {
-                    resultDiv.innerHTML = `<p>Error loading file: ${error}</p>`;
+                    resultDiv.innerHTML = `<p>Error loading File ${error}</p>`;
                 });
         }
     
@@ -79,7 +80,7 @@
                     resultDiv.innerHTML = `<p>No DATA found for Certificate ID: ${idInput}</p>`;
                 }
             } else {
-                resultDiv.innerHTML = `<p>Please load an Excel file first</p>`;
+                resultDiv.innerHTML = `<p>Please load the Google Sheets document first</p>`;
             }
         }
     </script>
