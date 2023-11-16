@@ -73,7 +73,7 @@
                 // Convert sheet data to JSON
                 certificateData = XLSX.utils.sheet_to_json(sheet);
 
-                resultDiv.innerHTML = "<p class='span5'>Google Sheets document loaded successfully</p>";
+                resultDiv.innerHTML = "<p class='span5'>Data loaded successfully</p>";
             })
             .catch(error => {
                 resultDiv.innerHTML = `<p>Error loading Google Sheets document: ${error}</p>`;
