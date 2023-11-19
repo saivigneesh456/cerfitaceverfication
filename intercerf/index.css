@@ -1,6 +1,6 @@
 body{
     margin: 20px;
-    background: linear-gradient(to right, #F1EAFF, #7743DB);
+    background: linear-gradient(to right, #f2f2f2, #ffffff);
 }
 
 .img_logo{
@@ -88,7 +88,7 @@ color: grey;
 }
 
 .span3{
-    color: #191825;
+    color: #182325;
 }
 
 .span2{

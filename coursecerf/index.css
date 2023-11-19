@@ -1,6 +1,6 @@
 body{
     margin: 20px;
-    background: linear-gradient(to right, #F1EAFF, #7743DB);
+    background: linear-gradient(to right, #F1EAFF, rgb(140, 231, 245));
 }
 
 .img_logo{
