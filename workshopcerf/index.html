@@ -33,10 +33,11 @@
                         </div>
                         <div class="nameInput">
                             <div>
-                                <label for="searchInput">Enter Workshop certificate Id or Name:</label>
+                                <label for="searchInput">Enter Workshop Certificate Id or Name:</label>
                                 <input type="text" id="searchInput">
                             </div>
                             <a href="#popup"><button class="button" onclick="getCertificateDetails()">Get Details</button></a>
+                            <a href="#" id="downloadLink" style="display: none;"><button class="button" onclick="downloadCertificate()">Download Certificate</button></a>
                         </div>
                         <div id="popup" class="popup">
                             <!-- Popup content will be displayed here -->
@@ -49,7 +50,6 @@
     </div>
 
     <script>
-      
     var certificateData;
 
     document.addEventListener('DOMContentLoaded', function () {
@@ -80,6 +80,7 @@
         var searchInput = document.getElementById("searchInput").value;
         var resultDiv = document.getElementById("result");
         var displayPopUp = document.getElementById("popup");
+        var downloadLink = document.getElementById("downloadLink");
 
         if (certificateData) {
             var certificate = certificateData.find(function (c) {
@@ -95,28 +96,29 @@
                     </div>
                     <div class="table-container">
                         <table class="data-table">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <td class="student-text">${certificate.Name}</td>
-                </tr>
-                <tr>
-                    <th>Workshop Name</th>
-                    <td class="student-text">${certificate.Workshopname}</td>
-                </tr>
-                <tr>
-                    <th>Designation</th>
-                    <td class="student-text">${certificate.Designation}</td>
-                </tr>
-                <tr>
-                    <th>Duration</th>
-                    <td class="student-text">${certificate.Duration}</td>
-                </tr>
-                <tr>
-                    <th>Certification ID</th>
-                    <td class="student-text">${certificate.Certificateid}</td>
-                </tr>
-            </thead>
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <td class="student-text1">${certificate.Name}</td>
+                                </tr>
+                                <tr>
+                                    <th>Workshop Name</th>
+                                    <td class="student-text1">${certificate.Workshopname}</td>
+                                </tr>
+                                <tr>
+                                    <th>Designation</th>
+                                    <td class="student-text1">${certificate.Designation}</td>
+                                </tr>
+                                <tr>
+                                    <th>Duration</th>
+                                    <td class="student-text1">${certificate.Duration}</td>
+                                </tr>
+                                <tr>
+                                    <th>Certification ID</th>
+                                    <td class="student-text1">${certificate.Certificateid}</td>
+                                </tr>
+                            </thead>
+                        </table>
                     </div>`;
                 displayPopUp.innerHTML = `
                     <div class="popup-content">
@@ -128,31 +130,33 @@
                         </div>
                         <div class="table-container">
                             <table class="data-table">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <td class="student-text">${certificate.Name}</td>
-                </tr>
-                <tr>
-                    <th>Workshop Name</th>
-                    <td class="student-text">${certificate.Workshopname}</td>
-                </tr>
-                <tr>
-                    <th>Designation</th>
-                    <td class="student-text">${certificate.Designation}</td>
-                </tr>
-                <tr>
-                    <th>Duration</th>
-                    <td class="student-text">${certificate.Duration}</td>
-                </tr>
-                <tr>
-                    <th>Certification ID</th>
-                    <td class="student-text">${certificate.Certificateid}</td>
-                </tr>
-            </thead>
-        </table>
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <td class="student-text">${certificate.Name}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Workshop Name</th>
+                                        <td class="student-text">${certificate.Workshopname}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Designation</th>
+                                        <td class="student-text">${certificate.Designation}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Duration</th>
+                                        <td class="student-text">${certificate.Duration}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Certification ID</th>
+                                        <td class="student-text">${certificate.Certificateid}</td>
+                                    </tr>
+                                </thead>
+                            </table>
                         </div>
                     </div>`;
+                downloadLink.style.display = "block"; // Show the download link
+                downloadLink.href = certificate.CertificateDowlandLink;
             } else {
                 resultDiv.innerHTML = `<i class="fas fa-circle-xmark"></i><p class="not-found">No DATA found for <span class="span5">${searchInput}</span></p>`;
                 displayPopUp.innerHTML = `
@@ -161,11 +165,17 @@
                         <i class="fas fa-circle-xmark"></i>
                         <p class="not-found">No DATA found for <span class="span2">${searchInput}</span></p>
                     </div>`;
+                downloadLink.style.display = "none"; // Hide the download link
             }
         } else {
             resultDiv.innerHTML = "<p>Please load an Excel file first</p>";
         }
     }
-</script>
+
+    function downloadCertificate() {
+        // Perform any additional download-related logic if needed
+        // This function is called when the "Download Certificate" button is clicked
+    }
+    </script>
 </body>
 </html>

@@ -218,6 +218,12 @@ section{
 }
 
 .student-text{
+    color: #000000;
+    border: 1px solid #D0A2F7;
+    font-weight: 400;
+    padding: 10px;
+}
+.student-text1{
     color: #A0E9FF;
     border: 1px solid #D0A2F7;
     font-weight: 400;
