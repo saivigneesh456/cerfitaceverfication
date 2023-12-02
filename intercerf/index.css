@@ -220,14 +220,14 @@ section{
 .student-text{
     color: #040404;
     border: 1px solid #D0A2F7;
-    font-weight: 400;
+    font-weight: bold;
     padding: 10px;
 }
 
 .student-text1{
     color: white;
     border: 1px solid #D0A2F7;
-    font-weight: 400;
+    font-weight: bold;
     padding: 10px;
 }
 
