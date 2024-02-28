@@ -293,3 +293,13 @@ section{
         min-height: 300px;
     }
 }
+
+footer {
+    background-color:transparent;
+    padding: 10px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    color: white;
+}
